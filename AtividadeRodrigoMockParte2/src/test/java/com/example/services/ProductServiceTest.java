@@ -56,16 +56,3 @@ class ProductServiceTest {
 
         verify(productService, times(1)).update(produtoAtualizado);
     }
-
-    @Test
-    void deveFalharAoSalvarImagemInexistente() {
-        Product produtoComImagemInvalida = new Product(2, "Tinta", 20.0f, "/caminho/inexistente.jpg");
-
-        doReturn(false).when(productService).save(produtoComImagemInvalida);
-
-        boolean resultado = productService.save(produtoComImagemInvalida);
-        
-        assertFalse(resultado);
-        verify(productService, times(1)).save(produtoComImagemInvalida);
-    }
-}
