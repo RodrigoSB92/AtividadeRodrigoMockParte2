@@ -17,7 +17,6 @@ class ProductServiceTest {
 
     @BeforeEach
     void setUp() {
-
         productService = spy(new ProductService());
         product = new Product(1, "Agulha", 10, "/C:Imagens/agulha.jpg");
     }
@@ -30,7 +29,6 @@ class ProductServiceTest {
         boolean resultado = productService.save(product);
 
         assertTrue(resultado);
-
         verify(productService, times(1)).save(product);
     }
 
@@ -38,7 +36,6 @@ class ProductServiceTest {
     void deveRemoverAImagemCorretamente() {
 
         int productId = 1;
-
         doNothing().when(productService).remove(productId);
 
         productService.remove(productId);
@@ -48,11 +45,12 @@ class ProductServiceTest {
 
     @Test
     void deveAtualizarAImagemCorretamente() {
-        Product produtoAtualizado = new Product(1, "Produto Atualizado", 15.99f, "/novo/caminho/imagem.png");
 
+        Product produtoAtualizado = new Product(1, "Produto Atualizado", 15.99f, "/novo/caminho/imagem.png");
         doNothing().when(productService).update(produtoAtualizado);
 
         productService.update(produtoAtualizado);
 
         verify(productService, times(1)).update(produtoAtualizado);
     }
+}
